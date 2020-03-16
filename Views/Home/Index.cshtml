@@ -1,0 +1,44 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Xpath";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="xml">Xml</label>
+                    <textarea id="xml" class="form-control" rows="20" asp-for="xml"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="xml">Xpath</label>
+                    <input id="xpath" class="form-control" asp-for="xpath"/>
+                </div>
+                <div class="form-group">
+                    <button id="execute" class="btn btn-primary" >update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <table id="results" class="table table-striped">
+                <thead class="thead-dark"><tr><th scope="col">Results</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.result ?? new System.Xml.XPath.XPathNavigator[0])
+                {
+                    <tr><td>@item.OuterXml</td></tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="debug" class="row">
+        <div class="col">
+            @Model.debug
+        </div>
+    </div>
+</div>
